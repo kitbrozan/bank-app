@@ -9,6 +9,7 @@ import {
   CreditCard,
   BarChart3,
   Settings,
+  Bot, // ← добавили иконку для AI Support
 } from "lucide-react";
 
 const navItems = [
@@ -16,6 +17,7 @@ const navItems = [
   { href: "/transfers", label: "Transfers", icon: Repeat },
   { href: "/payments", label: "Payments", icon: CreditCard },
   { href: "/analytics", label: "Analytics", icon: BarChart3 },
+  { href: "/ai-support", label: "AI Support", icon: Bot }, // ← новый пункт
   { href: "/settings", label: "Settings", icon: Settings },
 ];
 
@@ -26,7 +28,7 @@ export default function AppNavigation() {
     <>
       {/* ========== DESKTOP SIDEBAR ========== */}
       <aside className="hidden md:flex w-64 flex-col border-r border-border bg-card/50 backdrop-blur-xl p-4 h-screen sticky top-0">
-        {/* Только название с градиентом */}
+        {/* Название с градиентом */}
         <div className="mb-10 flex items-center gap-3">
           <span className="text-xl font-light bg-gradient-to-r from-brand-blue via-purple-400 to-brand-violet text-transparent bg-clip-text drop-shadow-[0_2px_6px_rgba(100,100,255,0.15)]">
             Levinpay
