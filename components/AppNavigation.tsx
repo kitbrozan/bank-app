@@ -33,10 +33,10 @@ export default function AppNavigation() {
   return (
     <>
       {/* ========== DESKTOP SIDEBAR ========== */}
-      <aside className="sticky top-0 z-40 hidden h-[100dvh] min-h-screen w-[200px] shrink-0 flex-col border-r border-border/10 bg-[#0a0a12]/95 backdrop-blur-2xl md:flex">
+      <aside className="sticky top-0 z-40 hidden h-full min-h-screen w-[200px] shrink-0 flex-col border-r border-border/10 bg-background/95 backdrop-blur-2xl md:flex dark:bg-[#0a0a12]/95">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-16 top-10 h-40 w-40 rounded-full bg-brand-violet/6 blur-[60px]" />
-          <div className="absolute -right-10 bottom-32 h-32 w-32 rounded-full bg-gold/4 blur-[50px]" />
+          <div className="absolute -right-16 top-10 h-40 w-40 rounded-full bg-brand-violet/6 blur-[60px] dark:bg-brand-violet/6" />
+          <div className="absolute -right-10 bottom-32 h-32 w-32 rounded-full bg-gold/4 blur-[50px] dark:bg-gold/4" />
         </div>
 
         <div className="relative px-5 pt-6 pb-8">
@@ -60,7 +60,7 @@ export default function AppNavigation() {
                   className={`flex items-center gap-2.5 rounded-lg px-3 py-2 transition-all duration-200 ${
                     active
                       ? "bg-gold/[0.07] text-gold"
-                      : "text-muted-foreground/60 hover:bg-white/[0.02] hover:text-foreground/80"
+                      : "text-muted-foreground/60 hover:bg-foreground/[0.03] hover:text-foreground/80"
                   }`}
                 >
                   {active && (
@@ -102,9 +102,9 @@ export default function AppNavigation() {
             className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="fixed left-0 top-0 z-50 h-screen w-[260px] border-r border-border/10 bg-[#0a0a12]/95 backdrop-blur-2xl md:hidden">
+          <aside className="fixed left-0 top-0 z-50 h-screen w-[260px] border-r border-border/10 bg-background/95 backdrop-blur-2xl md:hidden dark:bg-[#0a0a12]/95">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -right-20 top-20 h-60 w-60 rounded-full bg-brand-violet/8 blur-[80px]" />
+              <div className="absolute -right-20 top-20 h-60 w-60 rounded-full bg-brand-violet/8 blur-[80px] dark:bg-brand-violet/8" />
             </div>
 
             <div className="relative flex items-center justify-between px-5 pt-6 pb-4">
@@ -136,7 +136,7 @@ export default function AppNavigation() {
                       className={`flex items-center gap-3 rounded-xl px-3.5 py-3 transition-all duration-300 ${
                         active
                           ? "bg-gold/[0.08] text-gold"
-                          : "text-muted-foreground/70 hover:bg-white/[0.03] hover:text-foreground"
+                          : "text-muted-foreground/70 hover:bg-foreground/[0.03] hover:text-foreground"
                       }`}
                     >
                       {active && (
@@ -168,7 +168,7 @@ export default function AppNavigation() {
       )}
 
       {/* ========== MOBILE BOTTOM NAV ========== */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border/10 bg-[#0a0a12]/90 backdrop-blur-2xl md:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border/10 bg-background/90 backdrop-blur-2xl md:hidden dark:bg-[#0a0a12]/90">
         <div className="flex items-center justify-around px-1 py-1.5">
           {navItems.map(({ href, label, icon: Icon }) => {
             const active = isActive(href)

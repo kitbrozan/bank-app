@@ -1,4 +1,5 @@
 import { Bell, Settings } from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { BalanceCard } from "@/components/balance-card"
 import { AccountList } from "@/components/account-list"
 import { MyGoalCard, MyProgramCard } from "@/components/goals-program"
@@ -37,6 +38,7 @@ export default function Page() {
             >
               <Settings className="size-4" />
             </button>
+            <ThemeToggle />
           </div>
         </header>
 

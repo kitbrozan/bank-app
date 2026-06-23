@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import { Providers } from './providers'
 import AppNavigation from '@/components/AppNavigation'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -49,15 +50,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="overflow-x-hidden font-sans antialiased bg-background text-foreground">
-        <div className="flex min-h-svh w-full overflow-x-hidden">
-          <AppNavigation />
-          <div className="flex min-h-svh min-w-0 flex-1 flex-col overflow-x-hidden">
-            <div className="min-w-0 flex-1 pb-20 md:pb-0">{children}</div>
+        <Providers>
+          <div className="flex min-h-svh w-full overflow-x-hidden">
+            <AppNavigation />
+            <div className="flex min-h-svh min-w-0 flex-1 flex-col overflow-x-hidden">
+              <div className="min-w-0 flex-1 pb-20 md:pb-0">{children}</div>
+            </div>
           </div>
-        </div>
+        </Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
