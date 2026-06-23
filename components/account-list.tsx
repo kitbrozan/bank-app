@@ -23,7 +23,7 @@ const accounts = [
 
 export function AccountList() {
   return (
-    <section className="rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-xl">
+    <section className="w-full min-w-0 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-5">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-foreground">Accounts</h3>
         <button
@@ -39,19 +39,19 @@ export function AccountList() {
           <li key={acc.name}>
             <button
               type="button"
-              className="group flex w-full items-center gap-3 rounded-2xl border border-transparent bg-secondary/40 p-3 text-left transition-all hover:border-border hover:bg-secondary/70"
+              className="group flex w-full min-w-0 items-center gap-2 rounded-2xl border border-transparent bg-secondary/40 p-3 text-left transition-all hover:border-border hover:bg-secondary/70 sm:gap-3"
             >
               <span
-                className={`grid size-11 place-items-center rounded-xl ring-1 ${acc.accent}`}
+                className={`grid size-10 shrink-0 place-items-center rounded-xl ring-1 sm:size-11 ${acc.accent}`}
               >
                 <acc.icon className="size-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                   <p className="truncate text-sm font-semibold text-foreground">
                     {acc.name}
                   </p>
-                  <span className="rounded-md bg-background/60 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                  <span className="shrink-0 rounded-md bg-background/60 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
                     {acc.currency}
                   </span>
                 </div>
@@ -59,13 +59,13 @@ export function AccountList() {
                   {acc.sub}
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-semibold tabular-nums text-foreground">
+              <div className="shrink-0 text-right">
+                <p className="max-w-[5.5rem] truncate text-xs font-semibold tabular-nums text-foreground sm:max-w-none sm:text-sm">
                   {acc.balance}
                 </p>
-                <p className="text-xs font-medium text-positive">{acc.delta}</p>
+                <p className="text-[10px] font-medium text-positive sm:text-xs">{acc.delta}</p>
               </div>
-              <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+              <ChevronRight className="hidden size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 sm:block" />
             </button>
           </li>
         ))}

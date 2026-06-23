@@ -244,17 +244,17 @@ export default function TransferPage() {
   const allOthers = contacts.filter((c) => !c.isFavorite && !c.recentAmount)
 
   return (
-    <main className="bg-aurora min-h-screen w-full">
-      <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+    <main className="bg-aurora min-h-full w-full min-w-0 overflow-x-hidden">
+      <div className="mx-auto w-full max-w-5xl px-4 py-6 md:py-8">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3 md:mb-8">
           <div className="flex items-center gap-3">
             <div className="grid size-10 place-items-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
               <span className="font-mono text-sm font-bold text-gold">A</span>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Welcome back</p>
-              <h1 className="text-lg font-semibold text-foreground">Alexander Voss</h1>
+              <h1 className="text-base font-semibold text-foreground sm:text-lg">Alexander Voss</h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -344,7 +344,7 @@ export default function TransferPage() {
                     placeholder="0.00"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="h-14 w-full rounded-2xl border border-border/60 bg-card/60 pl-10 pr-4 text-2xl font-bold text-foreground placeholder:text-muted-foreground/30 backdrop-blur outline-none transition-all focus:border-gold/30 focus:ring-1 focus:ring-gold/20"
+                    className="h-11 w-full rounded-2xl border border-border/60 bg-card/60 pl-10 pr-4 text-lg font-bold text-foreground placeholder:text-muted-foreground/30 backdrop-blur outline-none transition-all focus:border-gold/30 focus:ring-1 focus:ring-gold/20 sm:h-14 sm:text-2xl"
                   />
                 </div>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -486,8 +486,8 @@ export default function TransferPage() {
 
       {/* Confirmation modal */}
       {showConfirm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md rounded-3xl border border-border/60 bg-card/90 p-6 backdrop-blur-xl shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-3 backdrop-blur-sm sm:p-4">
+          <div className="max-h-[90vh] w-[92vw] max-w-md overflow-y-auto rounded-3xl border border-border/60 bg-card/90 p-5 backdrop-blur-xl shadow-2xl sm:p-6">
             <div className="mb-6 text-center">
               <div className="mx-auto mb-4 grid size-16 place-items-center rounded-full bg-gold/15 ring-1 ring-gold/30">
                 <ArrowRightLeft className="size-7 text-gold" />
@@ -500,7 +500,7 @@ export default function TransferPage() {
             <div className="mb-6 rounded-2xl border border-border/40 bg-card/60 p-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Amount</span>
-                <span className="text-2xl font-bold text-foreground">${Number(amount).toFixed(2)}</span>
+                <span className="text-lg font-bold text-foreground sm:text-xl">${Number(amount).toFixed(2)}</span>
               </div>
               <div className="mt-2 flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">Fee</span>
@@ -510,13 +510,13 @@ export default function TransferPage() {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowConfirm(false)}
-                className="flex-1 rounded-2xl border border-border/60 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-card/60 hover:text-foreground"
+                className="min-h-11 flex-1 rounded-2xl border border-border/60 py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-card/60 hover:text-foreground"
               >
                 Cancel
               </button>
               <button
                 onClick={() => { setShowConfirm(false); setAmount("") }}
-                className="flex-1 rounded-2xl bg-gold/15 py-3 text-sm font-semibold text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25"
+                className="min-h-11 flex-1 rounded-2xl bg-gold/15 py-3 text-sm font-semibold text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25"
               >
                 Confirm
               </button>

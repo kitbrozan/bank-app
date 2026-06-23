@@ -55,11 +55,11 @@ export function BalanceCard() {
   const reset = () => setTilt({ x: 0, y: 0 })
 
   return (
-    <div className="relative [perspective:1400px]">
+    <div className="relative w-full min-w-0 overflow-hidden [perspective:1400px]">
       {/* Pulsing neon halo */}
       <div
         aria-hidden
-        className="animate-halo pointer-events-none absolute -inset-8 -z-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_20%,var(--brand-violet),transparent_55%),radial-gradient(circle_at_80%_90%,var(--brand-blue),transparent_55%),radial-gradient(circle_at_60%_40%,var(--gold),transparent_60%)] opacity-60 blur-3xl"
+        className="animate-halo pointer-events-none absolute -inset-3 -z-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_20%,var(--brand-violet),transparent_55%),radial-gradient(circle_at_80%_90%,var(--brand-blue),transparent_55%),radial-gradient(circle_at_60%_40%,var(--gold),transparent_60%)] opacity-60 blur-3xl sm:-inset-8"
       />
 
       <div
@@ -69,10 +69,10 @@ export function BalanceCard() {
         style={{
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         }}
-        className="liquid-border rounded-3xl p-px shadow-2xl transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+        className="liquid-border w-full min-w-0 rounded-3xl p-px shadow-2xl transition-transform duration-200 ease-out [transform-style:preserve-3d]"
       >
         {/* Glass inner surface */}
-        <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-card/70 p-7 backdrop-blur-xl">
+        <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-card/70 p-4 backdrop-blur-xl sm:p-6 md:p-7">
           {/* sweeping shine */}
           <div
             aria-hidden
@@ -111,15 +111,15 @@ export function BalanceCard() {
           </div>
 
           {/* balance */}
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
               Total Balance
             </p>
-            <div className="mt-2 flex items-end gap-2">
-              <span className="text-2xl font-light text-muted-foreground">
+            <div className="mt-2 flex min-w-0 items-end gap-1.5 sm:gap-2">
+              <span className="shrink-0 text-lg font-light text-muted-foreground sm:text-2xl">
                 €
               </span>
-              <h2 className="text-balance text-5xl font-semibold leading-none tracking-tight text-foreground tabular-nums sm:text-6xl">
+              <h2 className="min-w-0 text-balance text-[clamp(1.75rem,7vw,3.75rem)] font-semibold leading-none tracking-tight text-foreground tabular-nums">
                 {hidden ? (
                   "••••••"
                 ) : (
@@ -136,19 +136,19 @@ export function BalanceCard() {
           {/* Top up — small, clear primary button */}
           <button
             type="button"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-semibold text-gold-foreground shadow-[0_0_24px_-6px_var(--gold)] transition-transform hover:scale-[1.03] active:scale-95"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-full bg-gold px-4 py-2.5 text-sm font-semibold text-gold-foreground shadow-[0_0_24px_-6px_var(--gold)] transition-transform hover:scale-[1.03] active:scale-95 sm:mt-7"
           >
             <Plus className="size-4" />
             Top up
           </button>
 
           {/* secondary actions */}
-          <div className="mt-6 grid grid-cols-3 gap-3">
+          <div className="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
             {actions.map(({ label, icon: Icon, color, ring, glow }) => (
               <button
                 key={label}
                 type="button"
-                className="group/btn flex flex-col items-center gap-2 rounded-2xl border border-border bg-secondary/40 px-2 py-4 transition-all hover:bg-secondary/70"
+                className="group/btn flex min-h-11 flex-col items-center justify-center gap-2 rounded-2xl border border-border bg-secondary/40 px-1 py-3 transition-all hover:bg-secondary/70 sm:px-2 sm:py-4"
               >
                 <span
                   className={cn(

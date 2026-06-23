@@ -66,11 +66,11 @@ function StatCard({
   iconBg: string
 }) {
   return (
-    <div className="rounded-2xl border border-border/40 bg-card/40 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/60 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-      <div className="flex items-start justify-between">
-        <div>
+    <div className="w-full min-w-0 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/60 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] sm:p-5">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
           <p className="text-xs text-muted-foreground">{label}</p>
-          <p className="mt-1.5 text-2xl font-bold text-foreground">{value}</p>
+          <p className="mt-1.5 text-lg font-bold text-foreground sm:text-xl">{value}</p>
         </div>
         <div className={`grid size-10 place-items-center rounded-xl ${iconBg} ring-1 ring-white/10`}>
           <Icon className="size-5 text-foreground" />
@@ -124,17 +124,17 @@ export default function AnalyticsPage() {
   const monthlyOut = "$3,500.00"
 
   return (
-    <main className="bg-aurora min-h-screen w-full">
-      <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+    <main className="bg-aurora min-h-full w-full min-w-0 overflow-x-hidden">
+      <div className="mx-auto w-full max-w-5xl px-4 py-6 md:py-8">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3 md:mb-8">
           <div className="flex items-center gap-3">
             <div className="grid size-10 place-items-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
               <span className="font-mono text-sm font-bold text-gold">A</span>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Welcome back</p>
-              <h1 className="text-lg font-semibold text-foreground">Alexander Voss</h1>
+              <h1 className="text-base font-semibold text-foreground sm:text-lg">Alexander Voss</h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -156,7 +156,7 @@ export default function AnalyticsPage() {
         </header>
 
         {/* Stats row */}
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mb-6 grid grid-cols-1 gap-3 sm:mb-8 sm:grid-cols-3 sm:gap-4">
           <StatCard
             label="Total Balance"
             value={totalBalance}
@@ -186,13 +186,13 @@ export default function AnalyticsPage() {
         {/* Charts row */}
         <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-5">
           {/* Line chart */}
-          <div className="rounded-2xl border border-border/40 bg-card/40 p-5 backdrop-blur-xl transition-all duration-300 hover:bg-card/50 lg:col-span-3">
-            <div className="mb-4 flex items-center justify-between">
+          <div className="w-full min-w-0 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-card/50 sm:p-5 lg:col-span-3">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-sm font-semibold text-foreground">Income vs Expenses</h2>
                 <p className="text-xs text-muted-foreground">Last 6 months</p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="flex items-center gap-1.5">
                   <div className="size-2 rounded-full bg-emerald-400" />
                   <span className="text-xs text-muted-foreground">Income</span>
@@ -203,7 +203,7 @@ export default function AnalyticsPage() {
                 </div>
               </div>
             </div>
-            <div className="h-72 w-full">
+            <div className="h-56 w-full min-w-0 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={monthlyData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                   <defs>
@@ -254,13 +254,13 @@ export default function AnalyticsPage() {
           </div>
 
           {/* Pie chart */}
-          <div className="rounded-2xl border border-border/40 bg-card/40 p-5 backdrop-blur-xl transition-all duration-300 hover:bg-card/50 lg:col-span-2">
+          <div className="w-full min-w-0 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-card/50 sm:p-5 lg:col-span-2">
             <div className="mb-4">
               <h2 className="text-sm font-semibold text-foreground">Expenses by Category</h2>
               <p className="text-xs text-muted-foreground">This month</p>
             </div>
-            <div className="flex h-72 items-center gap-4">
-              <div className="h-full w-1/2">
+            <div className="flex h-auto flex-col items-center gap-4 sm:h-72 sm:flex-row">
+              <div className="h-44 w-full min-w-0 sm:h-full sm:w-1/2">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
@@ -281,14 +281,14 @@ export default function AnalyticsPage() {
                   </PieChart>
                 </ResponsiveContainer>
               </div>
-              <div className="flex w-1/2 flex-col gap-2.5">
+              <div className="flex w-full min-w-0 flex-col gap-2 sm:w-1/2">
                 {categoryData.map((cat) => (
-                  <div key={cat.name} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="size-2.5 rounded-full" style={{ backgroundColor: cat.color }} />
-                      <span className="text-xs text-muted-foreground">{cat.name}</span>
+                  <div key={cat.name} className="flex min-w-0 items-center justify-between gap-2">
+                    <div className="flex min-w-0 items-center gap-2">
+                      <div className="size-2.5 shrink-0 rounded-full" style={{ backgroundColor: cat.color }} />
+                      <span className="truncate text-xs text-muted-foreground">{cat.name}</span>
                     </div>
-                    <span className="text-xs font-semibold text-foreground">${cat.value}</span>
+                    <span className="shrink-0 text-xs font-semibold text-foreground">${cat.value}</span>
                   </div>
                 ))}
               </div>
@@ -297,25 +297,25 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Cash Flow block */}
-        <div className="rounded-2xl border border-border/40 bg-card/40 p-6 backdrop-blur-xl transition-all duration-300 hover:bg-card/50">
-          <div className="mb-6 flex items-center justify-between">
+        <div className="w-full min-w-0 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-card/50 sm:p-6">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-sm font-semibold text-foreground">Cash Flow</h2>
               <p className="text-xs text-muted-foreground">Select period to view summary</p>
             </div>
-            <div className="rounded-full bg-gold/10 px-3 py-1 text-xs font-medium text-gold ring-1 ring-gold/20">
+            <div className="w-fit max-w-full rounded-full bg-gold/10 px-3 py-1 text-xs font-medium text-gold ring-1 ring-gold/20">
               {period.label}
             </div>
           </div>
 
           {/* Slider */}
           <div className="mb-8">
-            <div className="relative mb-4 flex items-center justify-between">
+            <div className="relative mb-4 flex items-center gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {cashFlowPeriods.map((p, i) => (
                 <button
                   key={p.label}
                   onClick={() => setPeriodIndex(i)}
-                  className={`text-xs transition-colors ${
+                  className={`shrink-0 whitespace-nowrap text-xs transition-colors ${
                     i === periodIndex ? "font-semibold text-gold" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -364,21 +364,21 @@ export default function AnalyticsPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className="rounded-xl border border-border/30 bg-card/30 p-4 backdrop-blur-sm">
               <p className="text-xs text-muted-foreground">Total Income</p>
-              <p className="mt-1 text-xl font-bold text-positive">${period.income.toLocaleString()}</p>
+              <p className="mt-1 text-lg font-bold text-positive sm:text-xl">${period.income.toLocaleString()}</p>
               <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted/20">
                 <div className="h-full rounded-full bg-positive transition-all duration-500" style={{ width: "75%" }} />
               </div>
             </div>
             <div className="rounded-xl border border-border/30 bg-card/30 p-4 backdrop-blur-sm">
               <p className="text-xs text-muted-foreground">Total Expenses</p>
-              <p className="mt-1 text-xl font-bold text-destructive">${period.expense.toLocaleString()}</p>
+              <p className="mt-1 text-lg font-bold text-destructive sm:text-xl">${period.expense.toLocaleString()}</p>
               <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted/20">
                 <div className="h-full rounded-full bg-destructive transition-all duration-500" style={{ width: "55%" }} />
               </div>
             </div>
             <div className="rounded-xl border border-border/30 bg-card/30 p-4 backdrop-blur-sm">
               <p className="text-xs text-muted-foreground">Net Cash Flow</p>
-              <p className="mt-1 text-xl font-bold text-gold">${(period.income - period.expense).toLocaleString()}</p>
+              <p className="mt-1 text-lg font-bold text-gold sm:text-xl">${(period.income - period.expense).toLocaleString()}</p>
               <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-muted/20">
                 <div
                   className="h-full rounded-full bg-gold transition-all duration-500"

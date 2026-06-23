@@ -483,7 +483,7 @@ function MessageBubble({ message }: { message: Message }) {
         <div className="grid size-8 shrink-0 place-items-center rounded-full bg-gold/15 ring-1 ring-gold/30">
           <Bot className="size-4 text-gold" />
         </div>
-        <div className="max-w-[85%] rounded-2xl rounded-tl-sm border border-border/40 bg-card/40 px-5 py-3 backdrop-blur-xl">
+        <div className="max-w-[min(85%,calc(100vw-4rem))] rounded-2xl rounded-tl-sm border border-border/40 bg-card/40 px-4 py-3 backdrop-blur-xl sm:max-w-[85%] sm:px-5">
           <AnalysisAnimation step={message.content as unknown as number} />
         </div>
       </div>
@@ -501,9 +501,9 @@ function MessageBubble({ message }: { message: Message }) {
       >
         {isUser ? <User className="size-4 text-positive" /> : <Bot className="size-4 text-gold" />}
       </div>
-      <div className={`max-w-[85%] ${isUser ? "items-end" : "items-start"} flex flex-col`}>
+      <div className={`max-w-[min(85%,calc(100vw-4rem))] sm:max-w-[85%] ${isUser ? "items-end" : "items-start"} flex flex-col`}>
         <div
-          className={`rounded-2xl px-5 py-3 backdrop-blur-xl ${
+          className={`w-full break-words rounded-2xl px-4 py-3 backdrop-blur-xl sm:px-5 ${
             isUser
               ? "rounded-tr-sm border border-positive/20 bg-positive/10"
               : "rounded-tl-sm border border-border/40 bg-card/40"
@@ -595,7 +595,7 @@ function SuggestionCard({ suggestion, onClick }: { suggestion: Suggestion; onCli
   return (
     <button
       onClick={onClick}
-      className="group flex flex-col gap-2 rounded-2xl border border-border/40 bg-card/40 p-4 text-left backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/60 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:border-gold/20"
+      className="group flex w-full min-w-0 flex-col gap-2 rounded-2xl border border-border/40 bg-card/40 p-4 text-left backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/20 hover:bg-card/60 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
     >
       <div className="flex items-center justify-between">
         <div className={`grid size-9 place-items-center rounded-xl bg-muted/20 ring-1 ring-white/10 transition-colors group-hover:bg-gold/10`}>
@@ -621,6 +621,7 @@ export default function AISupportPage() {
       timestamp: new Date(),
     },
   ])
+  const [hasStartedConversation, setHasStartedConversation] = useState(false)
   const [input, setInput] = useState("")
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [analysisStep, setAnalysisStep] = useState(0)
@@ -674,7 +675,7 @@ export default function AISupportPage() {
   }
 
   const handleSuggestion = (suggestion: Suggestion) => {
-    // Add user message
+    setHasStartedConversation(true)
     setMessages((prev) => [
       ...prev,
       { id: "user-" + Date.now(), role: "user", content: suggestion.prompt, timestamp: new Date() },
@@ -686,6 +687,7 @@ export default function AISupportPage() {
   const handleSend = () => {
     if (!input.trim() || isAnalyzing) return
 
+    setHasStartedConversation(true)
     setMessages((prev) => [
       ...prev,
       { id: "user-" + Date.now(), role: "user", content: input.trim(), timestamp: new Date() },
@@ -723,34 +725,34 @@ export default function AISupportPage() {
   }
 
   return (
-    <main className="bg-aurora min-h-screen w-full">
-      <div className="mx-auto flex h-screen max-w-5xl flex-col px-4 py-8 sm:px-6 lg:py-12">
+    <main className="bg-aurora flex min-h-full w-full min-w-0 flex-col overflow-x-hidden">
+      <div className="mx-auto flex w-full max-w-5xl min-w-0 flex-1 flex-col px-4 py-6 md:py-8">
         {/* Header */}
-        <header className="mb-6 flex shrink-0 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="grid size-10 place-items-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
+        <header className="mb-4 flex shrink-0 flex-wrap items-center justify-between gap-3 md:mb-6">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
               <span className="font-mono text-sm font-bold text-gold">A</span>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs text-muted-foreground">Welcome back</p>
-              <h1 className="text-lg font-semibold text-foreground">Alexander Voss</h1>
+              <h1 className="truncate text-base font-semibold text-foreground sm:text-lg">Alexander Voss</h1>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5">
+          <div className="flex shrink-0 items-center gap-2">
+            <div className="hidden items-center gap-2 rounded-full border border-gold/20 bg-gold/10 px-3 py-1.5 sm:flex">
               <Sparkles className="size-3.5 text-gold" />
               <span className="text-xs font-medium text-gold">AI Assistant</span>
             </div>
             <button
               type="button"
-              className="grid size-10 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
+              className="grid size-11 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
               aria-label="Notifications"
             >
               <Bell className="size-4" />
             </button>
             <button
               type="button"
-              className="grid size-10 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
+              className="grid size-11 place-items-center rounded-full border border-border bg-card/50 text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
               aria-label="Settings"
             >
               <Settings className="size-4" />
@@ -759,10 +761,10 @@ export default function AISupportPage() {
         </header>
 
         {/* Chat area */}
-        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-hidden">
+        <div className="flex min-h-[60vh] min-w-0 flex-1 flex-col gap-4 overflow-hidden md:min-h-0">
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto pr-2">
-            <div className="flex flex-col gap-5 pb-4">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain pr-1">
+            <div className="flex flex-col gap-4 pb-2 sm:gap-5">
               {messages.map((message) => (
                 <MessageBubble key={message.id} message={message} />
               ))}
@@ -770,11 +772,11 @@ export default function AISupportPage() {
             </div>
           </div>
 
-          {/* Suggestions — show only when not analyzing and last message is from assistant */}
-          {!isAnalyzing && messages[messages.length - 1]?.role === "assistant" && (
+          {/* Suggestions — only before conversation starts */}
+          {!isAnalyzing && !hasStartedConversation && (
             <div className="shrink-0">
               <p className="mb-3 text-xs font-medium text-muted-foreground/60">Suggested questions</p>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                 {suggestions.map((suggestion) => (
                   <SuggestionCard
                     key={suggestion.id}
@@ -788,7 +790,7 @@ export default function AISupportPage() {
 
           {/* Input */}
           <div className="shrink-0 rounded-2xl border border-border/40 bg-card/40 p-3 backdrop-blur-xl">
-            <div className="flex items-end gap-3">
+            <div className="flex items-end gap-2 sm:gap-3">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -796,13 +798,13 @@ export default function AISupportPage() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask me anything about your finances..."
                 rows={1}
-                className="max-h-32 min-h-[44px] flex-1 resize-none bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none"
+                className="max-h-32 min-h-11 flex-1 resize-none bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/40 outline-none"
                 style={{ fieldSizing: "content" }}
               />
               <button
                 onClick={handleSend}
                 disabled={!input.trim() || isAnalyzing}
-                className="grid size-10 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="grid size-11 shrink-0 place-items-center rounded-xl bg-gold/15 text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25 disabled:cursor-not-allowed disabled:opacity-30"
               >
                 {isAnalyzing ? (
                   <Loader2 className="size-4 animate-spin" />

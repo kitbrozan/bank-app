@@ -19,11 +19,11 @@ export function ExpensesChart() {
   const total = data.reduce((sum, d) => sum + d.value, 0)
 
   return (
-    <section className="rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-xl">
-      <div className="flex items-start justify-between">
-        <div>
+    <section className="w-full min-w-0 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="min-w-0">
           <h3 className="text-sm font-semibold text-foreground">My Expenses</h3>
-          <p className="mt-1 text-2xl font-semibold tabular-nums text-foreground">
+          <p className="mt-1 text-lg font-semibold tabular-nums text-foreground sm:text-xl md:text-2xl">
             €{total.toLocaleString("en-US")}
           </p>
         </div>
@@ -33,7 +33,7 @@ export function ExpensesChart() {
         </span>
       </div>
 
-      <div className="mt-6 flex h-40 items-end justify-between gap-2">
+      <div className="mt-4 flex h-32 items-end justify-between gap-1 sm:mt-6 sm:h-40 sm:gap-2">
         {data.map((d, i) => {
           const isActive = active === i
           return (

@@ -51,13 +51,11 @@ export default function RootLayout({
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="font-sans antialiased bg-background text-foreground">
-        <div className="flex min-h-svh">
+      <body className="overflow-x-hidden font-sans antialiased bg-background text-foreground">
+        <div className="flex min-h-svh w-full overflow-x-hidden">
           <AppNavigation />
-          <div className="flex-1 flex flex-col min-h-svh">
-            {children}
-            {/* Добавляем отступ снизу на мобилках, чтобы контент не перекрывался таббаром */}
-            <div className="h-20 md:h-0" />
+          <div className="flex min-h-svh min-w-0 flex-1 flex-col overflow-x-hidden">
+            <div className="min-w-0 flex-1 pb-20 md:pb-0">{children}</div>
           </div>
         </div>
         {process.env.NODE_ENV === 'production' && <Analytics />}

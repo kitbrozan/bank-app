@@ -46,7 +46,7 @@ import {
   
   export function Transactions() {
     return (
-      <section className="rounded-3xl border border-border bg-card/60 p-5 backdrop-blur-xl">
+      <section className="w-full min-w-0 rounded-3xl border border-border bg-card/60 p-4 backdrop-blur-xl sm:p-5">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-semibold text-foreground">Transactions</h3>
           <button
@@ -73,7 +73,7 @@ import {
                 <p className="truncate text-xs text-muted-foreground">{tx.sub}</p>
               </div>
               <p
-                className={`text-sm font-semibold tabular-nums ${
+                className={`shrink-0 text-xs font-semibold tabular-nums sm:text-sm ${
                   tx.positive ? "text-positive" : "text-foreground"
                 }`}
               >

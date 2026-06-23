@@ -91,8 +91,8 @@ function Toggle({ enabled, onChange }: ToggleProps) {
 function SettingRow({ icon: Icon, iconColor, title, subtitle, action, onClick, danger }: SettingRowProps) {
   const Wrapper = onClick ? "button" : "div"
   const wrapperProps = onClick
-    ? { onClick, className: "flex w-full items-center gap-4 rounded-2xl border border-border/40 bg-card/40 p-4 text-left backdrop-blur-xl transition-all duration-300 hover:bg-card/60 cursor-pointer" + (danger ? " hover:border-destructive/30 hover:bg-destructive/5" : "") }
-    : { className: "flex w-full items-center gap-4 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl" + (danger ? " hover:border-destructive/30 hover:bg-destructive/5" : "") }
+    ? { onClick, className: "flex min-h-11 w-full min-w-0 items-center gap-3 rounded-2xl border border-border/40 bg-card/40 p-4 text-left backdrop-blur-xl transition-all duration-300 hover:bg-card/60 cursor-pointer sm:gap-4" + (danger ? " hover:border-destructive/30 hover:bg-destructive/5" : "") }
+    : { className: "flex min-h-11 w-full min-w-0 items-center gap-3 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl sm:gap-4" + (danger ? " hover:border-destructive/30 hover:bg-destructive/5" : "") }
 
   return (
     <Wrapper {...wrapperProps}>
@@ -126,7 +126,7 @@ function CardItem({ card }: { card: typeof cards[0] }) {
   }
 
   return (
-    <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-card/60">
+    <div className="flex w-full min-w-0 items-center gap-3 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-card/60 sm:gap-4">
       <div className={`grid size-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${card.color} ring-1 ring-white/10`}>
         <CreditCard className="size-5 text-foreground" />
       </div>
@@ -219,17 +219,17 @@ export default function SettingsPage() {
   ]
 
   return (
-    <main className="bg-aurora min-h-screen w-full">
-      <div className="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:py-12">
+    <main className="bg-aurora min-h-full w-full min-w-0 overflow-x-hidden">
+      <div className="mx-auto w-full max-w-5xl px-4 py-6 md:py-8">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3 md:mb-8">
           <div className="flex items-center gap-3">
             <div className="grid size-10 place-items-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
               <span className="font-mono text-sm font-bold text-gold">A</span>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Welcome back</p>
-              <h1 className="text-lg font-semibold text-foreground">Alexander Voss</h1>
+              <h1 className="text-base font-semibold text-foreground sm:text-lg">Alexander Voss</h1>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -251,14 +251,14 @@ export default function SettingsPage() {
         </header>
 
         {/* Profile banner */}
-        <div className="mb-8 flex items-center gap-5 rounded-2xl border border-border/40 bg-card/40 p-5 backdrop-blur-xl">
-          <div className="grid size-16 place-items-center rounded-full bg-gradient-to-br from-gold/30 to-amber-500/30 ring-2 ring-gold/30 shadow-[0_0_30px_rgba(212,168,83,0.15)]">
-            <span className="text-lg font-bold text-gold">AV</span>
+        <div className="mb-6 flex w-full min-w-0 flex-col gap-4 rounded-2xl border border-border/40 bg-card/40 p-4 backdrop-blur-xl sm:mb-8 sm:flex-row sm:items-center sm:gap-5 sm:p-5">
+          <div className="grid size-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold/30 to-amber-500/30 ring-2 ring-gold/30 shadow-[0_0_30px_rgba(212,168,83,0.15)] sm:size-16">
+            <span className="text-base font-bold text-gold sm:text-lg">AV</span>
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="text-base font-semibold text-foreground">Alexander Voss</h2>
-            <p className="text-xs text-muted-foreground">alex.voss@email.com · Premium Member</p>
-            <div className="mt-2 flex items-center gap-2">
+            <h2 className="text-base font-semibold text-foreground sm:text-lg">Alexander Voss</h2>
+            <p className="text-sm text-muted-foreground">alex.voss@email.com · Premium Member</p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-positive/15 px-2.5 py-0.5 text-[10px] font-medium text-positive ring-1 ring-positive/20">
                 Verified
               </span>
@@ -267,20 +267,20 @@ export default function SettingsPage() {
               </span>
             </div>
           </div>
-          <button className="rounded-full bg-gold/15 px-4 py-2 text-xs font-medium text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25">
+          <button className="min-h-11 w-full shrink-0 rounded-full bg-gold/15 px-4 py-2.5 text-sm font-medium text-gold ring-1 ring-gold/30 transition-all hover:bg-gold/25 sm:w-auto">
             Edit Profile
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="mb-8 flex gap-2 overflow-x-auto pb-2">
+        <div className="mb-6 flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:mb-8 [&::-webkit-scrollbar]:hidden">
           {tabs.map((tab) => {
             const Icon = tab.icon
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-medium transition-all whitespace-nowrap ${
+                className={`flex min-h-11 shrink-0 items-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium whitespace-nowrap transition-all sm:px-5 ${
                   activeTab === tab.id
                     ? "bg-gold/15 text-gold ring-1 ring-gold/30"
                     : "text-muted-foreground hover:text-foreground"
