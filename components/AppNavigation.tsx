@@ -27,9 +27,9 @@ export default function AppNavigation() {
   return (
     <>
       {/* ========== DESKTOP SIDEBAR ========== */}
-      <aside className="hidden md:flex w-64 flex-col border-r border-border bg-card/50 backdrop-blur-xl p-4 h-full overflow-y-auto">
-        {/* Название с градиентом */}
-        <div className="mb-10 flex items-center gap-3">
+      <aside className="hidden md:flex w-64 flex-col bg-[#0A1628] p-4 h-screen sticky top-0 border-r border-border/20">
+        {/* Название с градиентом — сдвинуто вправо */}
+        <div className="mb-10 flex items-center gap-3 pl-1.5">
           <span className="text-xl font-light bg-gradient-to-r from-brand-blue via-purple-400 to-brand-violet text-transparent bg-clip-text drop-shadow-[0_2px_6px_rgba(100,100,255,0.15)]">
             Levinpay
           </span>
@@ -46,7 +46,7 @@ export default function AppNavigation() {
                   className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-all ${
                     isActive
                       ? "bg-gold/10 text-gold"
-                      : "text-muted-foreground hover:bg-card/80 hover:text-foreground"
+                      : "text-white/60 hover:bg-white/5 hover:text-white"
                   }`}
                 >
                   {isActive && (
