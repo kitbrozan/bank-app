@@ -33,7 +33,7 @@ export default function AppNavigation() {
   return (
     <>
       {/* ========== DESKTOP SIDEBAR ========== */}
-      <aside className="sticky top-0 z-40 hidden h-full min-h-screen w-[200px] shrink-0 flex-col border-r border-border/10 bg-background/95 backdrop-blur-2xl md:flex dark:bg-[#0a0a12]/95">
+      <aside className="hidden self-start md:flex min-h-full w-[200px] shrink-0 flex-col border-r border-border/10 bg-background/95 backdrop-blur-2xl dark:bg-[#0a0a12]/95">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -right-16 top-10 h-40 w-40 rounded-full bg-brand-violet/6 blur-[60px] dark:bg-brand-violet/6" />
           <div className="absolute -right-10 bottom-32 h-32 w-32 rounded-full bg-gold/4 blur-[50px] dark:bg-gold/4" />
@@ -85,7 +85,7 @@ export default function AppNavigation() {
           })}
         </nav>
 
-        <div className="relative m-2.5 rounded-lg border border-gold/6 bg-gradient-to-br from-gold/[0.04] to-transparent p-3">
+        <div className="relative mx-2.5 mb-6 mt-8 rounded-lg border border-gold/6 bg-gradient-to-br from-gold/[0.04] to-transparent p-3">
           <div className="flex items-center gap-1.5 mb-1">
             <div className="size-1.5 rounded-full bg-positive" />
             <span className="text-[9px] font-medium text-positive uppercase tracking-wider">Online</span>
@@ -119,7 +119,7 @@ export default function AppNavigation() {
               </button>
             </div>
 
-            <nav className="relative flex flex-col gap-0.5 p-3 pt-2">
+            <nav className="relative flex flex-1 flex-col gap-0.5 p-3 pt-2">
               <p className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-muted-foreground/30">
                 Main
               </p>
