@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useRef, useState } from "react"
+import type React from "react";
+import { useRef, useState } from "react";
 import {
   ArrowUpRight,
   Plus,
@@ -10,9 +10,9 @@ import {
   ScanLine,
   Eye,
   EyeOff,
-} from "lucide-react"
-import { AnimatedCounter } from "@/components/animated-counter"
-import { cn } from "@/lib/utils"
+} from "lucide-react";
+import { AnimatedCounter } from "@/components/animated-counter";
+import { cn } from "@/lib/utils";
 
 const actions = [
   {
@@ -36,32 +36,26 @@ const actions = [
     ring: "group-hover/btn:border-gold/60",
     glow: "group-hover/btn:shadow-[0_0_22px_-4px_var(--gold)]",
   },
-] as const
+] as const;
 
 export function BalanceCard() {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [tilt, setTilt] = useState({ x: 0, y: 0 })
-  const [hidden, setHidden] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [hidden, setHidden] = useState(false);
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = cardRef.current
-    if (!el) return
-    const rect = el.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    setTilt({ x: py * -8, y: px * 10 })
-  }
+    const el = cardRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: py * -8, y: px * 10 });
+  };
 
-  const reset = () => setTilt({ x: 0, y: 0 })
+  const reset = () => setTilt({ x: 0, y: 0 });
 
   return (
-    <div className="relative w-full min-w-0 overflow-hidden [perspective:1400px]">
-      {/* Pulsing neon halo */}
-      <div
-        aria-hidden
-        className="animate-halo pointer-events-none absolute -inset-3 -z-10 rounded-[3rem] bg-[radial-gradient(circle_at_30%_20%,var(--brand-violet),transparent_55%),radial-gradient(circle_at_80%_90%,var(--brand-blue),transparent_55%),radial-gradient(circle_at_60%_40%,var(--gold),transparent_60%)] opacity-60 blur-3xl sm:-inset-8"
-      />
-
+    <div className="relative w-full min-w-0 [perspective:1400px]">
       <div
         ref={cardRef}
         onMouseMove={handleMove}
@@ -69,15 +63,11 @@ export function BalanceCard() {
         style={{
           transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         }}
-        className="liquid-border w-full min-w-0 rounded-3xl p-px shadow-2xl transition-transform duration-200 ease-out [transform-style:preserve-3d]"
+        className="w-full min-w-0 rounded-4xl bg-gradient-to-br from-card/80 via-card/60 to-card/80 p-px shadow-2xl transition-transform duration-200 ease-out [transform-style:preserve-3d]"
       >
-        {/* Glass inner surface */}
-        <div className="relative overflow-hidden rounded-[calc(1.5rem-1px)] bg-card/70 p-4 backdrop-blur-xl sm:p-6 md:p-7">
-          {/* sweeping shine */}
-          <div
-            aria-hidden
-            className="animate-shine pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          />
+        {/* Glass inner surface — без анимаций, только прозрачность */}
+        <div className="relative overflow-hidden rounded-[calc(2rem-1px)] bg-card/70 p-4 backdrop-blur-xl sm:p-6 md:p-7">
+          {/* убрал все анимации: нет animate-shine, animate-halo, liquid-border */}
 
           {/* top row */}
           <div className="flex items-start justify-between">
@@ -168,5 +158,5 @@ export function BalanceCard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
